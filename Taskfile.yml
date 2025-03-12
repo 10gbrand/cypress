@@ -1,0 +1,28 @@
+version: '3'
+
+tasks:
+  cy-run:
+    desc: Run Cypress in Docker
+    cmds:
+      - docker run -it -v $PWD:/e2e -w /e2e cypress/included:14.1.0
+  
+  cy-run_v:
+    desc: Run Cypress in Docker
+    cmds:
+      - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_VIDEO=true -e CYPRESS_VIDEO_COMPRESSION=15 cypress/included:14.1.0
+  
+  npm_up:
+    desc: install npm dependencies
+    cmds:
+      - npm ci # install dependencies
+#      - npm audit fix
+#      - npm start # start server on port 8080
+      - npx cypress open # for headed interactive mode
+
+
+#  up:
+#    dir: '{{.USER_WORKING_DIR}}'
+#    preconditions:
+#      - test -f docker-compose.yml
+#    cmds:
+#      - docker-compose up -d

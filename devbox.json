@@ -3,7 +3,8 @@
   "packages": [
     "go-task@latest",
     "nodejs@latest",
-    "cypress@13.17.0"
+    "cypress@13.17.0",
+    "docker@latest"
   ],
   "shell": {
     "init_hook": [

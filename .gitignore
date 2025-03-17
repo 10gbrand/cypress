@@ -1,2 +1,6 @@
 cypress/screenshots
 cypress/video
+.devbox
+
+# MacOS filesystem
+.DS_Store

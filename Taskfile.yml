@@ -11,6 +11,11 @@ tasks:
     cmds:
       - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_VIDEO=true -e CYPRESS_VIDEO_COMPRESSION=15 cypress/included:14.1.0
   
+  up:
+    desc: run from docker-compose
+    cmds:
+      - docker-compose up
+
   npm_up:
     desc: install npm dependencies
     cmds:

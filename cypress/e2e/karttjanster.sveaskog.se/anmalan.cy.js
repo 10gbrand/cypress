@@ -1,6 +1,6 @@
-describe("Test Services page on AGS", () => {
+describe("Tjänster för Anmalan", () => {
     it("Services page", () => {
-        cy.fixture('karttjansterServices').then((restServices) => {
+        cy.fixture('karttjansterAnmalan').then((restServices) => {
             cy.log('Fixture data:', JSON.stringify(restServices));
 
             cy.request({
@@ -19,21 +19,21 @@ describe("Test Services page on AGS", () => {
                     //cy.log('Full response:', JSON.stringify(response));
 
                     // Log specific parts
-                    //console.log('Response body:', parsedBody);
+                    console.log('Response body:', parsedBody);
                     //console.log('Current Version:', parsedBody.currentVersion);
                     
                     // Assertions
                     expect(response.status).to.eq(200);
                     expect(parsedBody.currentVersion).to.eq(restServices.currentVersion);
-                    //expect(parsedBody.folders).to.eq(restServices.folders);
-                    expect(parsedBody.folders).to.deep.equal(restServices.folders);
+                    expect(parsedBody.services).to.deep.equal(restServices.services);
 
                     // Additional checks
-                    expect(parsedBody).to.have.property('folders').that.is.an('array');
                     expect(parsedBody).to.have.property('services').that.is.an('array');
             });
         });
     });
+
+    
 });
 
 

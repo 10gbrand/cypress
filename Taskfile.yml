@@ -4,18 +4,21 @@ tasks:
   cy-run:
     desc: Run Cypress in Docker
     cmds:
-      - docker rm cypress-container
+      - docker rm cypress-container || echo "Container does not exist or cannot be removed."
       - docker run --name cypress-container -it -v $PWD:/e2e -w /e2e cypress/included:14.1.0
       
 
   
-  cy-run_v:
+  cy-run-v:
     desc: Run Cypress in Docker
     cmds:
-      - docker rm cypress-container
+      - docker rm cypress-container || echo "Container does not exist or cannot be removed."
       - docker run --name cypress-container -it -v $PWD:/e2e -w /e2e -e CYPRESS_VIDEO=true -e CYPRESS_VIDEO_COMPRESSION=15 cypress/included:14.1.0
       
-
+  cy-open:
+    desc: Open Cypress interface
+    cmds:
+      - npx cypress open # for headed interactive mode
   
   up:
     desc: run from docker-compose
@@ -23,10 +26,14 @@ tasks:
       - docker-compose up
 
   npm_up:
-    desc: install npm dependencies
+    desc: install Cypress and npm dependencies
     cmds:
-#      - apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-      - apt-get install libgtk2.0-0t64 libgtk-3-0t64 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
+#      - sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+#      - sudo apt-get install libgtk2.0-0t64 libgtk-3-0t64 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
+      - sudo add-apt-repository universe
+      - sudo apt-get update
+      - sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - npm install cypress --save-dev
 #      - npm ci # install dependencies
 #      - npm audit fix
 #      - npm start # start server on port 8080

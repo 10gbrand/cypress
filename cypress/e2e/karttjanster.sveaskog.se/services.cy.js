@@ -1,39 +1,38 @@
+const RERUNS = 3;
+const URLSUFIX = Cypress.env('karttjansterSites');
+
 describe("Test Services page on AGS", () => {
-    it("Services page", () => {
-        cy.fixture('karttjansterServices').then((restServices) => {
-            cy.log('Fixture data:', JSON.stringify(restServices));
+    URLSUFIX.forEach((urlsf) => {
+        const KarttjansURL = `${Cypress.env('karttjansterBase')}${urlsf}.${Cypress.env('sveaDomain')}/${Cypress.env('karttjansterRest')}`;
+        Cypress._.times(RERUNS, (index) => {
+            describe(`Testing URL: ${KarttjansURL}`, () => {
 
-            cy.request({
-                method: 'GET',
-                url: `${Cypress.env('karttjanster')}/services?f=pjson`,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  }
-            })
-                .then((response) => {
-                    const parsedBody = JSON.parse(response.body);
-                    
-                    // Log the entire response
-                    //console.log('Full response:', response);
-                    //cy.log('Full response:', JSON.stringify(response));
+                it(`Services page - Run ${index + 1}`, () => {
+                    cy.fixture('karttjansterServices').then((restServices) => {
+                        cy.log('Fixture data:', JSON.stringify(restServices));
 
-                    // Log specific parts
-                    //console.log('Response body:', parsedBody);
-                    //console.log('Current Version:', parsedBody.currentVersion);
-                    
-                    // Assertions
-                    expect(response.status).to.eq(200);
-                    expect(parsedBody.currentVersion).to.eq(restServices.currentVersion);
-                    //expect(parsedBody.folders).to.eq(restServices.folders);
-                    expect(parsedBody.folders).to.deep.equal(restServices.folders);
+                        cy.request({
+                            method: 'GET',
+                            url: `${KarttjansURL}/services?f=pjson`,
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            }
+                        }).then((response) => {
+                            const parsedBody = JSON.parse(response.body);
 
-                    // Additional checks
-                    expect(parsedBody).to.have.property('folders').that.is.an('array');
-                    expect(parsedBody).to.have.property('services').that.is.an('array');
+                            // Assertions
+                            expect(response.status).to.eq(200);
+                            expect(parsedBody.currentVersion).to.eq(restServices.currentVersion);
+                            expect(parsedBody.folders).to.deep.equal(restServices.folders);
+
+                            // Additional checks
+                            expect(parsedBody).to.have.property('folders').that.is.an('array');
+                            expect(parsedBody).to.have.property('services').that.is.an('array');
+                        });
+                    });
+                });
             });
         });
     });
 });
-
-

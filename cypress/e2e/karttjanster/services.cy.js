@@ -8,7 +8,7 @@ describe("Test Services page on AGS", () => {
             describe(`Testing URL: ${KarttjansURL}`, () => {
 
                 it(`Services page - Run ${index + 1}`, () => {
-                    cy.fixture('karttjansterServices').then((restServices) => {
+                    cy.fixture('karttjanster/services').then((restServices) => {
                         cy.log('Fixture data:', JSON.stringify(restServices));
 
                         cy.request({

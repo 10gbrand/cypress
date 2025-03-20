@@ -1,12 +1,11 @@
 version: '3.8'
-
 services:
   cypress:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: cypress_tests
-    working_dir: /e2e
+    build: .
     volumes:
-      - .:/e2e # Mount the current directory into /e2e in the container
-    command: ["cypress", "run"] # Default command to run Cypress tests interactively
+      - ./cypress:/e2e/cypress
+      - ./cypress.config.js:/e2e/cypress.config.js
+      - ./reports:/e2e/cypress/reports
+    command:
+      - "--reporter"
+      - "cypress-mochawesome-reporter"

@@ -1,16 +1,16 @@
 const RERUNS = 3;
 const URLSUFIX = Cypress.env('karttjansterSites');
 
-describe("Anmalan", () => {
+describe("Anmalan/Anmalan", () => {
     URLSUFIX.forEach((urlsf) => {
         const KarttjansURL = `${Cypress.env('karttjansterBase')}${urlsf}.${Cypress.env('sveaDomain')}/${Cypress.env('karttjansterRest')}`;
         Cypress._.times(RERUNS, (index) => {
-            it(`Services page - ${KarttjansURL} - Run ${index + 1}`, () => {
-                cy.fixture('karttjanster/anmalan/anmalan').then((restServices) => {
-                    cy.log('Fixture data:', JSON.stringify(restServices));
+            it(`MapServer - ${KarttjansURL}/services/Anmalan/Anmalan/MapServer?f=pjson - Run ${index + 1}`, () => {
+                cy.fixture('karttjanster/Anmalan/Anmalan/MapServer').then((fixture) => {
+                    cy.log('Fixture data:', JSON.stringify(fixture));
                     cy.request({
                         method: 'GET',
-                        url: `${KarttjansURL}/services/Anmalan?f=pjson`,
+                        url: `${KarttjansURL}/services/Anmalan/Anmalan/MapServer?f=pjson`,
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
@@ -18,21 +18,19 @@ describe("Anmalan", () => {
                     })
                         .then((response) => {
                             const parsedBody = JSON.parse(response.body);
-                            
-                            // Log the entire response
+                        
+                            // Log specific parts
                             cy.log('Response body:', parsedBody);
-                            
+
                             // Assertions
                             expect(response.status).to.eq(200);
-                            expect(parsedBody.currentVersion).to.eq(restServices.currentVersion);
-                            expect(parsedBody.services).to.deep.equal(restServices.services);
-                            
-                            // Additional checks
-                            expect(parsedBody).to.have.property('services').that.is.an('array');
+                            expect(parsedBody.currentVersion).to.eq(fixture.currentVersion);
+                            expect(parsedBody.layers).to.deep.equal(fixture.layers);
+                            expect(parsedBody.spatialReference).to.deep.equal(fixture.spatialReference);
+                            expect(parsedBody.tables).to.deep.equal(fixture.tables);
                         });
                 });
             });
         });
     });
 });
-

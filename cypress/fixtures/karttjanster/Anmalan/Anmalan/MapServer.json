@@ -1,0 +1,139 @@
+{
+ "currentVersion": 10.91,
+ "serviceDescription": "Kartlager för Anmälanweb",
+ "mapName": "Layers",
+ "description": "",
+ "copyrightText": "",
+ "supportsDynamicLayers": false,
+ "layers": [
+  {
+   "id": 0,
+   "name": "Anmälan",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 250000,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 1,
+   "name": "Hänsyn",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    2,
+    3,
+    4
+   ],
+   "minScale": 24000,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 2,
+   "name": "HansynLinje",
+   "parentLayerId": 1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolyline"
+  },
+  {
+   "id": 3,
+   "name": "HansynPunkt",
+   "parentLayerId": 1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint"
+  },
+  {
+   "id": 4,
+   "name": "HansynYta",
+   "parentLayerId": 1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 5,
+   "name": "Basväg",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 24000,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolyline"
+  },
+  {
+   "id": 6,
+   "name": "PlaneradAvverkning",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 250000,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  }
+ ],
+ "tables": [],
+ "spatialReference": {
+  "wkid": 3006,
+  "latestWkid": 3006
+ },
+ "singleFusedMapCache": false,
+ "initialExtent": {
+  "xmin": 415334.0737079339,
+  "ymin": 6815667.219944948,
+  "xmax": 418783.5858152915,
+  "ymax": 6820658.798784288,
+  "spatialReference": {
+   "wkid": 3006,
+   "latestWkid": 3006
+  }
+ },
+ "fullExtent": {
+  "xmin": -5120900,
+  "ymin": -9998100,
+  "xmax": 14875300,
+  "ymax": 9998100,
+  "spatialReference": {
+   "wkid": 3006,
+   "latestWkid": 3006
+  }
+ },
+ "minScale": 250000,
+ "maxScale": 0,
+ "units": "esriMeters",
+ "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+ "documentInfo": {
+  "Title": "",
+  "Author": "",
+  "Comments": "Kartlager för Anmälanweb",
+  "Subject": "Kartlager för Anmälanweb",
+  "Category": "",
+  "AntialiasingMode": "None",
+  "TextAntialiasingMode": "Force",
+  "Keywords": "Anmälan,AnmälanWeb"
+ },
+ "capabilities": "Map,Query,Data",
+ "supportedQueryFormats": "JSON, geoJSON",
+ "exportTilesAllowed": false,
+ "referenceScale": 0,
+ "supportsDatumTransformation": true,
+ "maxRecordCount": 1000,
+ "maxImageHeight": 4096,
+ "maxImageWidth": 4096,
+ "supportedExtensions": "WMSServer"
+}

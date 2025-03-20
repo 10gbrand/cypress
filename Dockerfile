@@ -1,14 +1,13 @@
-# Use the Cypress included image as the base
-FROM cypress/included:14.1.0
+FROM cypress/included:latest
 
-# Set the working directory inside the container
 WORKDIR /e2e
 
-# Copy your project files into the container
-# COPY . /e2e
+COPY package.json .
+COPY cypress.config.js .
+COPY cypress ./cypress
 
-# Install any additional dependencies (if needed)
-# RUN npm install
+RUN npm install
+RUN npm install --save-dev cypress-mochawesome-reporter
 
-# Default command to run Cypress tests
-CMD ["cypress", "run"]
+ENTRYPOINT ["npx", "cypress", "run"]
+

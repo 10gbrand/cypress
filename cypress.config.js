@@ -3,7 +3,9 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   e2e: {
     retries: 3,
-    // baseUrl: 'http://localhost:1234',
+    setupNodeEvents(on, config) {
+      require('cypress-mochawesome-reporter/plugin')(on)
+    },
   },
-  reporter: 'reporters/custom.js',
+  reporter: 'cypress-mochawesome-reporter',
 })

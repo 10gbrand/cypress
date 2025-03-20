@@ -7,7 +7,11 @@ tasks:
       - docker rm cypress-container || echo "Container does not exist or cannot be removed."
       - docker run --name cypress-container -it -v $PWD:/e2e -w /e2e cypress/included:14.1.0
       
-
+  cy-run-anm:
+    desc: Open Cypress interface
+    cmds:
+      - docker rm cypress-container || echo "Container does not exist or cannot be removed."
+      - docker run --name cypress-container -it -v $PWD:/e2e -w /e2e cypress/included:14.1.0 --spec "cypress/e2e/your-spec-file.cy.js"
   
   cy-run-v:
     desc: Run Cypress in Docker
@@ -24,6 +28,13 @@ tasks:
     desc: run from docker-compose
     cmds:
       - docker-compose up
+  
+  rm:
+    desc: rensr loggar mm
+    cmds:
+      - sudo rm -rf cypress/videos/
+      - sudo rm -rf cypress/screenshots/
+      - sudo rm -rf reports/
 
   npm_up:
     desc: install Cypress and npm dependencies

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "cypress.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   },
   "homepage": "https://github.com/10gbrand/cypress#readme",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cypress": "^12.0.0",
+    "cypress-mochawesome-reporter": "^3.2.0"
+  }
 }

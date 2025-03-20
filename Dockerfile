@@ -4,6 +4,7 @@ WORKDIR /e2e
 
 COPY package.json .
 COPY cypress.config.js .
+COPY cypress.env.json .
 COPY cypress ./cypress
 
 RUN npm install

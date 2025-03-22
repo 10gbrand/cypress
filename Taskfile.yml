@@ -1,7 +1,7 @@
 version: '3'
 
 includes:
-  create_cypres_test: ./taskfiles/create_cypres_test.yml
+  create_cypres_test: ./taskfiles/create_cypres_tests.yml
 
 tasks:
   cy-run:

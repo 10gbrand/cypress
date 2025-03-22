@@ -1,0 +1,71 @@
+version: '3'
+
+vars:
+  BASE_URL: https://geodpags.skogsstyrelsen.se/arcgis/rest/services
+  BASE_DIR: cypress/fixtures
+  BASE_E2E_DIR: cypress/e2e
+  CATALOG_FILE: '{{.BASE_DIR}}/Geodataportal/services.json'
+  TEMPLATE_FILE: fme/service_tamplate.js # Path to your template file
+
+tasks:
+  default:
+    desc: skapar fixturer och testfall mot AGS.
+    cmds:
+      - task: fetch-catalog
+      - task: process-services
+      - task: generate-tests
+
+  fetch-catalog:
+    cmds:
+      - mkdir -p {{.BASE_DIR}}/Geodataportal
+      - curl -sS -o {{.CATALOG_FILE}} "{{.BASE_URL}}/Geodataportal?f=pjson"
+    status:
+      - test -f {{.CATALOG_FILE}}
+
+  process-services:
+    deps: [fetch-catalog]
+    cmds:
+      - |
+        jq -r '.services[] | "\(.name)|\(.type)"' {{.CATALOG_FILE}} | while IFS='|' read -r SERVICE_NAME SERVICE_TYPE; do
+            SERVICE_DIR="{{.BASE_DIR}}/${SERVICE_NAME}"
+            mkdir -p "${SERVICE_DIR}"
+            echo "Fetching ${SERVICE_NAME}..."
+            echo "writing to: ${SERVICE_DIR}/${SERVICE_TYPE}.json"
+            curl -sS -o "${SERVICE_DIR}/${SERVICE_TYPE}.json" "{{.BASE_URL}}/${SERVICE_NAME}/${SERVICE_TYPE}?f=pjson"
+        done
+
+    silent: true
+
+  generate-tests:
+    deps: [process-services]
+    cmds:
+      - |
+        TEMPLATE_FILE={{.TEMPLATE_FILE}}
+        
+        CATALOG_FILE={{.CATALOG_FILE}}
+        
+        jq -r '.services[] | "\(.name)|\(.type)"' "$CATALOG_FILE" | while IFS='|' read -r SERVICE_NAME SERVICE_TYPE; do
+          # Create directory structure
+          mkdir -p "{{.BASE_E2E_DIR}}/$SERVICE_NAME"         
+          # Define the test file path
+          TEST_FILE="{{.BASE_E2E_DIR}}/$SERVICE_NAME/$SERVICE_TYPE.cy.js"
+          echo "Generating test file: $TEST_FILE"
+
+          # Read the template file
+          TEMPLATE=$(cat "$TEMPLATE_FILE")
+
+          # Replace placeholders using an alternative delimiter (|) in sed
+          CONTENT=$(echo "$TEMPLATE" | sed "s|@Value(name)|${SERVICE_NAME}|g" | sed "s|@Value(type)|${SERVICE_TYPE}|g")
+
+          # Write the content to the test file
+          echo "$CONTENT" > "$TEST_FILE"
+        done
+
+
+
+
+  clean:
+    cmds:
+      - rm -rf {{.BASE_DIR}}
+
+

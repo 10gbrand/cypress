@@ -1,0 +1,122 @@
+{
+ "currentVersion": 11.1,
+ "folders": [],
+ "services": [
+  {
+   "name": "Geodataportal/GeodataportalVisaAbinrapport_4_0",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaAbinrapportheatmap_4_0",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaAktivbrand",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaAtervatningavtal",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaAvverkningsanmalan",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaBarkborresvarmningrapport",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaBiotopskydd",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaBrand",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaContortagransyta",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaDodagranar",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaFjallnaragransyta",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaFrotaktsomraden",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaNaturkultur",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaNaturvardsavtal",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaNyckelbiotop",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaObjektnaturvarde",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaOSIpunkter",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaOSIraster",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaRasoskred",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSamrad",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSkoghistoria",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSkogligaGrunddataMetadata",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSkogsbruk",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSkogsbruknyckelbiotop",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSkogsskyddsbestammelser",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSkogsstyrelsenRegionDistrikt",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSumpskog",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaSverigeindexruta",
+   "type": "MapServer"
+  },
+  {
+   "name": "Geodataportal/GeodataportalVisaUtfordavverkning",
+   "type": "MapServer"
+  }
+ ]
+}

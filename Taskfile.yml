@@ -1,5 +1,8 @@
 version: '3'
 
+includes:
+  create_cypres_test: ./taskfiles/create_cypres_test.yml
+
 tasks:
   cy-run:
     desc: Run Cypress in Docker
